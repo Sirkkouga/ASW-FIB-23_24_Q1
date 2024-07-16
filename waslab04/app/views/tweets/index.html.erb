@@ -1,0 +1,28 @@
+<body style="background-color: rgb(250, 240, 240);">
+  
+
+  <h1 style="text-align: center">Wall of Tweets</h1>
+  
+  
+  <div style="border: 2px dashed rgb(170, 150, 150); background-color: #FFF; padding: 20px; ">
+  <%= render partial: 'form', locals: { tweet: Tweet.new } %>
+</div>
+
+<% if notice.present? %>
+    <div style="border: 3px solid rgb(230, 210, 210); background-color: #FFF; padding: 2px; margin-top: 20px;">
+      <% if notice.starts_with?("Tweet was") %>
+        <p style="color: green"><%= notice %></p>
+      <% else %>
+        <p style="color: red"><%= notice %></p>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div id="tweets">
+    <% @tweets.each do |tweet| %>
+      <%= render tweet %>
+    <% end %>
+  </div>
+  
+
+</body>

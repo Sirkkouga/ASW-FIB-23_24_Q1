@@ -1,0 +1,30 @@
+<div id="<%= dom_id tweet %>">
+  <p style="font-size: 20px">
+    <%= tweet.created_at.strftime("%A, %B %d, %Y") %>
+  </p>
+  <div style="display: flex; border: 3px solid rgb(230, 210, 210);background-color: #FFF; padding: 2px;">
+    <div style="flex: 1;  text-align: center; width:">
+      <p style= "font-size: 24px; color: purple"><strong><%= tweet.likes %></strong></p>
+      <p style="font-size: 12px">people like this</p>
+       <% if session[:created_ids].nil? || !session[:created_ids].include?(tweet.id)%>
+          <p>
+            <%= button_to 'Like', like_tweet_path(tweet), method: :put %>
+          </p>
+        <% else %>
+          <p class="destroy" >
+            <%= button_to 'Destroy', tweet, method: :delete %>
+          </p>
+      <% end %>
+    </div>
+    <div style="flex: 2; border-left:3px solid rgb(230, 210, 210); padding: 20px;">
+      <p style = "font-size: 20px">
+        <strong><em><%= tweet.author %></em> @ <%= tweet.created_at.strftime("%H:%M") %></strong>
+      </p>
+      <p>
+        <strong>Content:</strong>
+        <%= tweet.content %>
+      </p>
+      
+    </div>
+  </div>
+</div>

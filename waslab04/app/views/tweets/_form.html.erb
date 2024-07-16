@@ -1,0 +1,27 @@
+<%= form_with(model: tweet) do |form| %>
+  
+
+  <div style="display: flex; align-items: center; margin-bottom: 5px">
+    <%= form.label :author, "Your name: ", style: "display: inline-block; text-align: center; margin-right: 10px;" %>
+    <%= form.text_field :author, style: "width: 500px" %>
+  </div>
+
+    <div style="display: flex; align-items: center;">
+    <%= form.label :content, "Your tweet: ", style: "display: inline-block; text-align: center; margin-right: 10px;" %>
+    <%= form.text_area :content, style: "width: 500px; height: 50px;" %>
+    <%= form.submit "Tweet!", style: "margin-left: 10px" %>
+  </div>
+
+  <% if tweet.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+
+      <ul>
+        <% tweet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+ <% end %>
+  
+<% end %>
